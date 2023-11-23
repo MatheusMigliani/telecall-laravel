@@ -258,6 +258,8 @@
                                                 <label class="form-label" for="form2Example22"></label>
                                                 <span id="senha-error" class="invalid-feedback"></span>
                                                 <span id="senha-success" class="valid-feedback"></span>
+                                                <br>
+                                                <a href="{{ url('/forgot-password') }}" class="h2 botaoadd botaosenha" style="text-transform: None;">Esqueceu a senha?</a>
                                             </div>
 
                                             <div class="text-center pt-1 mb-5 pb-1">
@@ -266,14 +268,17 @@
                                                     type="submit">
                                                     Login
                                                 </button>
-                                                <a  class="btn btn-link">Esqueceu a senha?</a>
+
+
                                             </div>
 
                                             <div class="d-flex">
-                                                <p class="mb-0 me-2">Não tem uma conta?</p>
+                                                <h5 class="mb-0 me-2">Não tem<br>uma conta?
+
+                                                </h5>
                                                 <a href="register">
                                                     <button type="button" class="btn btn-danger btn-login">
-                                                        Criar Conta
+                                                        Criar Agora!
                                                     </button></a>
                                             </div>
                                         </form>

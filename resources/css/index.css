@@ -903,6 +903,11 @@ font-size: 60px;
 
     color: red !important;
 }
+
+.botaoredef{
+    margin-left: 11rem;
+    margin-top: 1rem;
+}
 table {
     display: table;
     border-collapse: separate;

@@ -490,21 +490,14 @@
                         <span id="estado-error" class="invalid-feedback"></span>
                         <span id="estado-success" class="valid-feedback"></span>
                       </div>
-                      <h2>Perguntas Secretas</h2>
-                      <h7 style="color: red">Estas perguntas serão usadas pra recuperar sua senha caso necessario</h7>
+                      <h2>Pergunta Secreta</h2>
+                      <h7 style="color: red">Esta pergunta sera usada pra recuperar sua senha caso necessario.</h7>
 
                       <div class="form-group">
                         <label  name="question_1" for="pergunta1">Nome de um Animal Doméstico:</label>
                         <input type="text" name="answer_1" id="pergunta1" class="form-control" required>
                     </div>
-                    <div class="form-group">
-                        <label name="question_2" for="pergunta1">Nome de um Personagem</label>
-                        <input type="text" name="answer_2" id="pergunta1" class="form-control" required>
-                    </div>
-                    <div class="form-group">
-                        <label name="question_3"for="question_3">Nome de uma musica</label>
-                        <input type="text" name="answer_3" id="pergunta1" class="form-control" required>
-                    </div>
+
 
 
                       <div class="form-outline mb-4">

@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
+
 
 
 class UserController extends Controller
@@ -200,4 +202,31 @@ class UserController extends Controller
 
 
     // REGISTRO //
+
+
+    public function showForgotPasswordForm()
+    {
+        return view('forgot-password');
+    }
+
+    public function resetPassword(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email',
+        'answer' => 'required',
+        'password' => 'required|confirmed|min:8',
+    ]);
+
+    $user = User::where('email', $request->email)
+                ->where('answer_1', $request->answer)
+                ->first();
+
+    if ($user) {
+        $user->update(['password' => Hash::make($request->password)]);
+        alert()->success('Sucesso', 'Senha redefinida com sucesso. Faça login com sua nova senha.')->showConfirmButton('OK', '#4bb543');
+        return redirect('/login')->with('success', 'Senha redefinida com sucesso. Faça login com sua nova senha.');
+    }
+    alert()->error('E-mail ou resposta à pergunta incorretos.')->showConfirmButton('OK', '#fa0000');
+    return back()->withErrors(['email' => 'E-mail ou resposta à pergunta incorretos.']);
+}
 }

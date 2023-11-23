@@ -3,7 +3,7 @@
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CustomNewPasswordController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -47,8 +47,8 @@ Route::get('/cpaas', function () {
     return view('cpaas');
 });
 
-Route::get('/reset-password', function () {
-    return view('reset-password');
+Route::get('/forgot-password', function () {
+    return view('forgot-password');
 });
 //rotas site//
 
@@ -108,6 +108,7 @@ Route::middleware(['admin'])->group(function () {
 
 
 
-
+Route::view('/forgot-password', 'forgot-password')->name('password.reset');
+Route::post('/forgot-password', [UserController::class, 'resetPassword']);
 
 // Adicione rotas de autenticação de dois fatores, se necessário
