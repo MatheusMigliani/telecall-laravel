@@ -4,7 +4,6 @@ use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CustomNewPasswordController;
-use Laravel\Fortify\Fortify;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,8 +17,6 @@ use Laravel\Fortify\Fortify;
 */
 
 
-Route::post('/verificar-respostas', [UserController::class, 'verificarRespostas'])->name('verificarRespostas');
-Route::post('/reset-password', [CustomNewPasswordController::class, 'resetPassword'])->name('resetPassword');
 
 
 

@@ -14,40 +14,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
-
-    public function mostrarModalEsqueceuSenha(Request $request)
-{
-    $request->validate([
-        'email' => 'required|email|exists:users,email',
-    ]);
-
-    $user = User::where('email', $request->email)->first();
-
-    return view('login', compact('user'));
-}
-
-    public function verificarRespostas(Request $request)
-    {
-        $user = User::find($request->user_id);
-
-        // Verifique as respostas
-        if (
-            Hash::check($request->resposta_1, $user->answer_1) &&
-            Hash::check($request->resposta_2, $user->answer_2) &&
-            Hash::check($request->resposta_3, $user->answer_3)
-        ) {
-            return redirect('/redefinir-senha')->with('user_id', $user->id);
-        } else {
-            return redirect('/login')->with('error', 'Respostas incorretas. Tente novamente.');
-        }
-    }
-
-
-
-
-
-
-
+    // CRUD//
 
 
     public function listarUsuarios()
@@ -136,6 +103,12 @@ class UserController extends Controller
         return redirect('/admin')->with('success', 'Usuário excluído com sucesso.');
     }
 
+    // CRUD //
+
+
+
+
+    // LOGIN //
 
     public function logar(Request $request)
     {
@@ -169,13 +142,13 @@ class UserController extends Controller
 
 
 
+    // ~LOGIN //
 
 
 
 
 
-
-
+    // LOGOUT //
 
 
     public function logout()
@@ -185,9 +158,10 @@ class UserController extends Controller
         return redirect('/index');
     }
 
+    // LOGOUT  //
 
 
-
+    // REGISTRO //
 
 
 
@@ -222,4 +196,8 @@ class UserController extends Controller
         Alert('Cadastro Feito com sucesso', 'Seja Bem vindo!.');
         return redirect('/dashboard');
     }
+
+
+
+    // REGISTRO //
 }

@@ -129,7 +129,7 @@
                             <!-- Adicione aqui a lógica para verificar o email e as perguntas -->
                             <!-- e permitir a alteração de senha se as respostas estiverem corretas -->
                             <!-- Utilize um formulário para enviar as respostas e a nova senha -->
-                            <form method="POST" action="{{ route('resetPassword') }}">
+                            <form method="POST"
                                 @csrf
 
                                 <!-- Adicione os campos necessários para as perguntas e a nova senha -->
@@ -146,17 +146,17 @@
 
                                 <!-- Adicione os campos para as perguntas -->
                                 <div class="mb-3">
-                                    <label for="resposta_1" class="form-label">{{ $user->question_1 }}</label>
+                                    <label for="resposta_1" class="form-label"></label>
                                     <input type="text" class="form-control" id="resposta_1" name="resposta_1" required>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="resposta_2" class="form-label">{{ $user->question_2 }}</label>
+                                    <label for="resposta_2" class="form-label"></label>
                                     <input type="text" class="form-control" id="resposta_2" name="resposta_2" required>
                                 </div>
 
                                 <div class="mb-3">
-                                    <label for="resposta_3" class="form-label">{{ $user->question_3 }}</label>
+                                    <label for="resposta_3" class="form-label">{</label>
                                     <input type="text" class="form-control" id="resposta_3" name="resposta_3" required>
                                 </div>
 

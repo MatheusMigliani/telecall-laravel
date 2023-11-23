@@ -266,7 +266,7 @@
                                                     type="submit">
                                                     Login
                                                 </button>
-                                                <a href="{{ route('showResetPasswordForm') }}" class="btn btn-link">Esqueceu a senha?</a>
+                                                <a  class="btn btn-link">Esqueceu a senha?</a>
                                             </div>
 
                                             <div class="d-flex">
