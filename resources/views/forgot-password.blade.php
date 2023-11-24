@@ -154,7 +154,7 @@
                                     <div class="form-group">
                                         <label for="name">{{ __('Telefone Celular') }}</label>
                                         <input type="tel" name="TelCelular" class="form-control"
-                                            placeholder="Telefone Fixo"required value="{{ auth()->user()->TelCelular }}">
+                                            placeholder="Telefone Celular"required value="{{ auth()->user()->TelCelular }}">
                                     </div>
 
                                     <div class="form-group">
@@ -261,6 +261,7 @@
                 © 2023 Copyright: Matheus Migliani
             </div>
         </footer>
+        <script src="{{asset("js/cep.js")}}"></script>
     @else
         <nav class="navbar navbar-expand-xxl fixed-top -lg">
             <div class="container-xxl">
