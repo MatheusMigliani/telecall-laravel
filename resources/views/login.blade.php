@@ -253,8 +253,8 @@
                                             </div>
 
                                             <div class="form-outline mb-4">
-                                                <input type="password" id="senha-login" minlength="8"
-                                                maxlength="8"class="form-control senhainput"
+                                                <input type="password" id="senha-login" 
+                                                maxlength="10"class="form-control senhainput"
                                                     placeholder="Senha" name="loginpassword" />
                                                 <label class="form-label" for="form2Example22"></label>
                                                 <span id="senha-error" class="invalid-feedback"></span>
@@ -346,10 +346,8 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
     <!--meu js-->
-    <script src="./scripts/login.js"></script>
-    <script src="./scripts/localstoragelogin.js"></script>
-    <script src="./scripts/logado.js"></script>
-    <script src="./scripts/darkmode.js"></script>
+    <script src="{{asset("js/login.js")}}"></script>
+    <script src="{{asset("js/darkmode.js")}}"></script>
 
     <!--sweet alert-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>

@@ -234,8 +234,8 @@
                           class="form-control senha"
                           placeholder="Senha"
                           name="password"
-                          minlength="8"
-                          maxlength="8"
+                          minlength="10"
+                          maxlength="10"
 
                         />
                         <label class="form-label" for="form2Example22"></label>
@@ -250,8 +250,8 @@
                           id="senha2"
                           class="form-control senha2"
                           placeholder="Confirme a Senha"
-                          minlength="8"
-                          maxlength="8"
+                          minlength="10"
+                          maxlength="10"
 
                         />
                         <label class="form-label" for="form2Example22"></label>
@@ -617,7 +617,11 @@
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
       crossorigin="anonymous"
     ></script>
-    <!--meu js-->
+<script src="{{asset("js/register.js")}}"></script>
+<script src="{{asset("js/cep.js")}}"></script>
+<script src="{{asset("js/darkmode.js")}}"></script>
+    <!--meu js--s>
+
 
     <!--sweet alert-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>

@@ -197,14 +197,14 @@
 
                                     <div class="form-group">
                                         <label for="password">{{ __('Nova Senha') }}</label>
-                                        <input type="password" name="password" class="form-control"minlength="8"
-                                            maxlength="8" required>
+                                        <input type="password" name="password" class="form-control"minlength="10"
+                                            maxlength="10" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="password_confirmation">{{ __('Confirme a Nova Senha') }}</label>
-                                        <input type="password" name="password_confirmation" minlength="8"
-                                            maxlength="8" class="form-control" required>
+                                        <input type="password" name="password_confirmation" minlength="10"
+                                            maxlength="10" class="form-control" required>
                                     </div>
 
                                     <button type="submit" class="btn btn-success botaoadd botaoredef ">
@@ -377,6 +377,11 @@
                                         <input type="email" name="email" class="form-control"
                                             placeholder="Email Cadastrado"required>
                                     </div>
+                                    <div class="form-group">
+                                        <label for="name">{{ __('Usúario Cadastrado') }}</label>
+                                        <input type="text" name="name" class="form-control"
+                                            placeholder="Usúario Cadastrado"required value="">
+                                    </div>
 
                                     <div class="form-group">
                                         <label for="answer">{{ __('Nome de um Animal Doméstico') }}</label>
@@ -386,14 +391,15 @@
 
                                     <div class="form-group">
                                         <label for="password">{{ __('Nova Senha') }}</label>
-                                        <input type="password" name="password" class="form-control"minlength="8"
-                                        maxlength="8" required>
+                                        <input type="password" name="password" id="senha"  class="form-control"minlength="10"
+                                        maxlength="10" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="password_confirmation">{{ __('Confirme a Nova Senha') }}</label>
-                                        <input type="password" name="password_confirmation"minlength="8"
-                                        maxlength="8" class="form-control"
+                                        <input type="password" name="password2"
+                                        id="senha2" minlength="10"
+                                        maxlength="10" class="form-control"
                                             required>
                                     </div>
 
@@ -457,9 +463,9 @@
         integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
-    <script src="./scripts/localstoragelogin.js"></script>
-    <script src="./scripts/logado.js"></script>
-    <script src="./scripts/darkmode.js"></script>
+    <script src="{{asset("js/register.js")}}"></script>
+    <script src="{{asset("js/cep.js")}}"></script>
+    <script src="{{asset("js/darkmode.js")}}"></script>
     <script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
     @include('sweetalert::alert')
 </body>

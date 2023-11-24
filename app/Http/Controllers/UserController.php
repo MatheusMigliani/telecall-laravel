@@ -201,8 +201,8 @@ class UserController extends Controller
         $DadosRegistro = $request->validate([
             'name' => ['required', 'min:6', 'max:6', Rule::unique('users', 'name')],
             'email' => ['required', 'email', Rule::unique('users')],
-            'password' => ['required', ],
-            'password2' => ['required', ],
+            'password' => ['required',],
+            'password2' => ['required',],
             'cpf' => ['required'],
             'nascimento' => ['required'],
             'TelCelular' => ['required'],
@@ -257,6 +257,9 @@ class UserController extends Controller
         ]);
 
         $user = User::where('email', $request->email)
+            ->where('answer_1', $request->answer)
+            ->first();
+            $user = User::where('name', $request->name)
             ->where('answer_1', $request->answer)
             ->first();
 
