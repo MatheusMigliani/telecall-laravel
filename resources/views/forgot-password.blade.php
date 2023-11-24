@@ -147,8 +147,8 @@
                                             placeholder="Email Cadastrado"required value="{{ auth()->user()->email }}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="name">{{ __('Usúario Cadastrado') }}</label>
-                                        <input type="text" name="name" class="form-control"
+                                        <label for="name">{{ __('') }}</label>
+                                        <input type="hidden" name="name" class="form-control"
                                             placeholder="Usúario Cadastrado"required value="{{ auth()->user()->name }}">
                                     </div>
                                     <div class="form-group">
@@ -379,7 +379,8 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="name">{{ __('Usúario Cadastrado') }}</label>
-                                        <input type="text" name="name" class="form-control"
+                                        <input type="text" name="name" class="form-control" minlength="6"
+                                        maxlength="6"
                                             placeholder="Usúario Cadastrado"required value="">
                                     </div>
 
