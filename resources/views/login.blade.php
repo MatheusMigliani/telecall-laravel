@@ -253,13 +253,15 @@
                                             </div>
 
                                             <div class="form-outline mb-4">
-                                                <input type="password" id="senha-login" class="form-control senhainput"
+                                                <input type="password" id="senha-login" minlength="8"
+                                                maxlength="8"class="form-control senhainput"
                                                     placeholder="Senha" name="loginpassword" />
                                                 <label class="form-label" for="form2Example22"></label>
                                                 <span id="senha-error" class="invalid-feedback"></span>
                                                 <span id="senha-success" class="valid-feedback"></span>
                                                 <br>
-                                                <a href="{{ url('/forgot-password') }}" class="h2 botaoadd botaosenha" style="text-transform: None;">Esqueceu a senha?</a>
+                                                <a href="{{ url('/forgot-password') }}" class="h2 botaoadd botaosenha"
+                                                    style="text-transform: None;">Esqueceu a senha?</a>
                                             </div>
 
                                             <div class="text-center pt-1 mb-5 pb-1">

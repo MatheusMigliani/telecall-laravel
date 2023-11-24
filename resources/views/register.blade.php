@@ -251,6 +251,7 @@
                           class="form-control senha2"
                           placeholder="Confirme a Senha"
                           minlength="8"
+                          maxlength="8"
 
                         />
                         <label class="form-label" for="form2Example22"></label>
@@ -617,11 +618,7 @@
       crossorigin="anonymous"
     ></script>
     <!--meu js-->
-    <script src="./scripts/register.js"></script>
-    <script src="./scripts/login.js"></script>
-    <script src="./scripts/cep.js"></script>
-    <script src="./scripts/localstorageregister.js"></script>
-    <script src="./scripts/darkmode.js"></script>
+
     <!--sweet alert-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
     <script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>

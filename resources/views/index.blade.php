@@ -367,7 +367,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
     <script src="./scripts/localstoragelogin.js"></script>
     <script src="./scripts/logado.js"></script>
-    <script src="./scripts/darkmode.js"></script>
+
     <script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
 @include('sweetalert::alert')
 </body>

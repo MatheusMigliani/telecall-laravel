@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf as FacadePdf;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Barryvdh\DomPDF\PDF;
 
 
 
@@ -17,7 +19,14 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
 
+    public function gerarPDF()
+    {
+        $usuarios = User::all();
 
+        $pdf = FacadePdf::loadView('pdf', compact('usuarios'));
+
+        return $pdf->download('lista_usuarios.pdf');
+    }
 
 
 
@@ -100,8 +109,9 @@ class UserController extends Controller
 
         // Adicionar o novo usuário
         User::create($novosDados);
+        alert()->success('Usuário adicionado com sucesso.')->showConfirmButton('OK', '#4bb543');
 
-        return redirect('/admin')->with('success', 'Usuário adicionado com sucesso.');
+        return redirect('/admin');
     }
 
 
@@ -119,8 +129,9 @@ class UserController extends Controller
 
         // Excluir o usuário
         $usuario->delete();
+        alert()->success('Usuário excluído com sucesso.')->showConfirmButton('OK', '#FF0000');
 
-        return redirect('/admin')->with('success', 'Usuário excluído com sucesso.');
+        return redirect('/admin');
     }
 
     // CRUD //
@@ -189,8 +200,9 @@ class UserController extends Controller
     {
         $DadosRegistro = $request->validate([
             'name' => ['required', 'min:6', 'max:6', Rule::unique('users', 'name')],
-            'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => ['required', 'max:8'],
+            'email' => ['required', 'email', Rule::unique('users')],
+            'password' => ['required', ],
+            'password2' => ['required', ],
             'cpf' => ['required'],
             'nascimento' => ['required'],
             'TelCelular' => ['required'],
@@ -228,8 +240,8 @@ class UserController extends Controller
     public function resetPassword(Request $request)
     {
         $request->validate([
-            'email' => 'required|email',
-            'name' => 'required',
+            'email' => 'required',
+            'name',
             'answer' => 'required',
             'password' => 'required',
             'TelCelular',
@@ -264,10 +276,10 @@ class UserController extends Controller
             // Check if the user is already authenticated
             if (Auth::check()) {
                 alert()->success('Sucesso', 'Senha redefinida com sucesso.')->showConfirmButton('OK', '#4bb543');
-                return redirect('/dashboard')->with('success', 'Senha redefinida com sucesso.');
+                return redirect('/dashboard');
             } else {
                 alert()->success('Sucesso', 'Senha redefinida com sucesso. Faça login com sua nova senha.')->showConfirmButton('OK', '#4bb543');
-                return redirect('/login')->with('success', 'Senha redefinida com sucesso. Faça login com sua nova senha.');
+                return redirect('/login');
             }
         }
 

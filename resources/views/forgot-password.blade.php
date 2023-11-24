@@ -142,8 +142,8 @@
                                 <form method="post" action="{{ route('password.reset') }}">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="email">{{ __('E-mail') }}</label>
-                                        <input type="email" name="email" class="form-control"
+                                        <label for="email">{{ __('') }}</label>
+                                        <input type="hidden" name="email" class="form-control"
                                             placeholder="Email Cadastrado"required value="{{ auth()->user()->email }}">
                                     </div>
                                     <div class="form-group">
@@ -197,13 +197,14 @@
 
                                     <div class="form-group">
                                         <label for="password">{{ __('Nova Senha') }}</label>
-                                        <input type="password" name="password" class="form-control" required>
+                                        <input type="password" name="password" class="form-control"minlength="8"
+                                            maxlength="8" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="password_confirmation">{{ __('Confirme a Nova Senha') }}</label>
-                                        <input type="password" name="password_confirmation" class="form-control"
-                                            required>
+                                        <input type="password" name="password_confirmation" minlength="8"
+                                            maxlength="8" class="form-control" required>
                                     </div>
 
                                     <button type="submit" class="btn btn-success botaoadd botaoredef ">
@@ -385,12 +386,14 @@
 
                                     <div class="form-group">
                                         <label for="password">{{ __('Nova Senha') }}</label>
-                                        <input type="password" name="password" class="form-control" required>
+                                        <input type="password" name="password" class="form-control"minlength="8"
+                                        maxlength="8" required>
                                     </div>
 
                                     <div class="form-group">
                                         <label for="password_confirmation">{{ __('Confirme a Nova Senha') }}</label>
-                                        <input type="password" name="password_confirmation" class="form-control"
+                                        <input type="password" name="password_confirmation"minlength="8"
+                                        maxlength="8" class="form-control"
                                             required>
                                     </div>
 

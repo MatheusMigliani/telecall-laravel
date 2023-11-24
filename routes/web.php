@@ -17,9 +17,11 @@ use App\Http\Controllers\PasswordController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get('/admin/download-pdf', 'UserController@downloadPDF')->name('admin.download.pdf');
 
 // Rota para exibir o formulário de alteração de senha
 Route::post('/user/update-password', [UserController::class, 'updatePassword'])->name('user.updatePassword');
+Route::get('/admin/download-pdf', [UserController::class, 'gerarPDF'])->name('admin.download.pdf');
 
 
 Route::middleware(['auth'])->group(function () {
@@ -33,6 +35,9 @@ Route::get('/', function () {
 });
 Route::get('/changepass', function () {
     return view('changepass');
+});
+Route::get('/pdf', function () {
+    return view('pdf');
 });
 
 Route::get('/index', function () {

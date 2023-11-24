@@ -125,6 +125,9 @@
             </div>
         </div>
     </nav>
+
+
+
     @auth
         <div class="container">
 
@@ -134,156 +137,159 @@
                 <i class="fa-solid fa-user-plus"></i>
                 Adicionar Usuário
             </button>
-
-            <table class="table meudeus">
-                <thead>
-                    <tr>
-                        <th> <i style="color:red;" class="fa-regular fa-user fa-1x "></i>ID</th>
-                        <th><i class="fa-solid fa-right-to-bracket iconesadmin "></i>Nome</th>
-                        <th><i class="fa-solid fa-envelope iconesadmin "></i><br>Email</th>
-                        <th><i class="fa-solid fa-id-badge iconesadmin"></i><br>Nome Completo</th>
-                        <th><i class="fa-solid fa-id-card iconesadmin"></i><br>CPF</th>
-                        <th><i  class="fa-solid fa-mobile iconesadmin "></i><br>Telefone Celular</th>
-                        <th><i  class="fa-solid fa-phone-volume iconesadmin"></i><br>Telefone Fixo</th>
-                        <th><i  class="fa-solid fa-house iconesadmin"></i><br>Endereço</th>
-                        <th><i  class="fa-solid fa-location-dot iconesadmin"></i>Numero</th>
-                        <th><i  class="fa-solid fa-bars-staggered iconesadmin "></i> Ações <i style="color:red;"class="fa-solid fa-arrow-down"></i></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($usuarios as $usuario)
+            <a href="{{ route('admin.download.pdf') }}" class="btn btn-danger botaoadd">Baixar Lista de Usuários em PDF</a>
+                <table class="table meudeus">
+                    <thead>
                         <tr>
-                            <td>{{ $usuario->id }}</td>
-                            <td>{{ $usuario->name }}</td>
-                            <td>{{ $usuario->email }}</td>
-                            <td>{{ $usuario->NomeCompleto }}</td>
-                            <td>{{ $usuario->cpf }}</td>
-                            <td>{{ $usuario->TelCelular }}</td>
-                            <td>{{ $usuario->TelFixo }}</td>
-                            <td>{{ $usuario->Rua }}</td>
-                            <td>{{ $usuario->Numero }}</td>
-                            <!-- Adicione mais colunas conforme necessário -->
-                            <td>
-                                <!-- Botão para abrir o modal de edição -->
-                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
-                                    data-bs-target="#editarUsuario{{ $usuario->id }}">
-                                    Editar
-                                </button>
-
-                                <!-- Botão para abrir o modal de exclusão -->
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal"
-                                    data-bs-target="#excluirUsuario{{ $usuario->id }}">
-                                    Excluir
-                                </button>
-                            </td>
+                            <th> <i style="color:red;" class="fa-regular fa-user fa-1x "></i>ID</th>
+                            <th><i class="fa-solid fa-right-to-bracket iconesadmin "></i>Nome</th>
+                            <th><i class="fa-solid fa-envelope iconesadmin "></i><br>Email</th>
+                            <th><i class="fa-solid fa-id-badge iconesadmin"></i><br>Nome Completo</th>
+                            <th><i class="fa-solid fa-id-card iconesadmin"></i><br>CPF</th>
+                            <th><i class="fa-solid fa-mobile iconesadmin "></i><br>Telefone Celular</th>
+                            <th><i class="fa-solid fa-phone-volume iconesadmin"></i><br>Telefone Fixo</th>
+                            <th><i class="fa-solid fa-house iconesadmin"></i><br>Endereço</th>
+                            <th><i class="fa-solid fa-location-dot iconesadmin"></i>Numero</th>
+                            <th><i class="fa-solid fa-bars-staggered iconesadmin "></i> Ações <i
+                                    style="color:red;"class="fa-solid fa-arrow-down"></i></th>
                         </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($usuarios as $usuario)
+                            <tr>
+                                <td>{{ $usuario->id }}</td>
+                                <td>{{ $usuario->name }}</td>
+                                <td>{{ $usuario->email }}</td>
+                                <td>{{ $usuario->NomeCompleto }}</td>
+                                <td>{{ $usuario->cpf }}</td>
+                                <td>{{ $usuario->TelCelular }}</td>
+                                <td>{{ $usuario->TelFixo }}</td>
+                                <td>{{ $usuario->Rua }}</td>
+                                <td>{{ $usuario->Numero }}</td>
+                                <!-- Adicione mais colunas conforme necessário -->
+                                <td>
+                                    <!-- Botão para abrir o modal de edição -->
+                                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                                        data-bs-target="#editarUsuario{{ $usuario->id }}">
+                                        Editar
+                                    </button>
 
-                        <!-- Conteúdo do Modal de Edição -->
-                        <div class="modal fade" id="editarUsuario{{ $usuario->id }}" tabindex="-1"
-                            aria-labelledby="editarUsuarioLabel{{ $usuario->id }}" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="editarUsuarioLabel{{ $usuario->id }}">Editar Usuário
-                                        </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <!-- Formulário de Edição -->
-                                        <form action="{{ route('atualizarUsuario', ['id' => $usuario->id]) }}"
-                                            method="post">
-                                            @csrf
-                                            @method('PUT') <!-- Adicione esta linha para indicar que é um método PUT -->
+                                    <!-- Botão para abrir o modal de exclusão -->
+                                    <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                        data-bs-target="#excluirUsuario{{ $usuario->id }}">
+                                        Excluir
+                                    </button>
+                                </td>
+                            </tr>
 
-                                            <!-- Campos do Formulário -->
-                                            <div class="mb-3">
-                                                <label for="name" class="form-label">Nome</label>
-                                                <input type="text" class="form-control" id="name" name="name" maxlength="6"
-                                                    value="{{ $usuario->name }}">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input type="text" class="form-control" id="email" name="email"
-                                                    value="{{ $usuario->email }}">
-                                            </div>
+                            <!-- Conteúdo do Modal de Edição -->
+                            <div class="modal fade" id="editarUsuario{{ $usuario->id }}" tabindex="-1"
+                                aria-labelledby="editarUsuarioLabel{{ $usuario->id }}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="editarUsuarioLabel{{ $usuario->id }}">Editar
+                                                Usuário
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Formulário de Edição -->
+                                            <form action="{{ route('atualizarUsuario', ['id' => $usuario->id]) }}"
+                                                method="post">
+                                                @csrf
+                                                @method('PUT')
+                                                <!-- Adicione esta linha para indicar que é um método PUT -->
 
-                                            <div class="mb-3">
-                                                <label for="NomeCompleto" class="form-label">Nome Completo</label>
-                                                <input type="text" class="form-control" id="NomeCompleto"
-                                                    name="NomeCompleto" value="{{ $usuario->NomeCompleto }}">
-                                            </div>
+                                                <!-- Campos do Formulário -->
+                                                <div class="mb-3">
+                                                    <label for="name" class="form-label">Nome</label>
+                                                    <input type="text" class="form-control" id="name"
+                                                        name="name" maxlength="6" value="{{ $usuario->name }}">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="email" class="form-label">Email</label>
+                                                    <input type="text" class="form-control" id="email"
+                                                        name="email" value="{{ $usuario->email }}">
+                                                </div>
 
-                                            <div class="mb-3">
-                                                <label for="cpf" class="form-label">CPF</label>
-                                                <input type="text" class="form-control" id="cpf" name="cpf"
-                                                    value="{{ $usuario->cpf }}">
-                                            </div>
+                                                <div class="mb-3">
+                                                    <label for="NomeCompleto" class="form-label">Nome Completo</label>
+                                                    <input type="text" class="form-control" id="NomeCompleto"
+                                                        name="NomeCompleto" value="{{ $usuario->NomeCompleto }}">
+                                                </div>
 
-                                            <div class="mb-3">
-                                                <label for="TelCelular" class="form-label">Telefone Celular</label>
-                                                <input type="text" class="form-control" id="TelCelular"
-                                                    name="TelCelular" value="{{ $usuario->TelCelular }}">
-                                            </div>
+                                                <div class="mb-3">
+                                                    <label for="cpf" class="form-label">CPF</label>
+                                                    <input type="text" class="form-control" id="cpf"
+                                                        name="cpf" value="{{ $usuario->cpf }}">
+                                                </div>
 
-                                            <div class="mb-3">
-                                                <label for="TelFixo" class="form-label">Telefone Fixo</label>
-                                                <input type="text" class="form-control" id="TelFixo" name="TelFixo"
-                                                    value="{{ $usuario->TelFixo }}">
-                                            </div>
+                                                <div class="mb-3">
+                                                    <label for="TelCelular" class="form-label">Telefone Celular</label>
+                                                    <input type="text" class="form-control" id="TelCelular"
+                                                        name="TelCelular" value="{{ $usuario->TelCelular }}">
+                                                </div>
 
-                                            <div class="mb-3">
-                                                <label for="Rua" class="form-label">Rua</label>
-                                                <input type="text" class="form-control" id="Rua" name="Rua"
-                                                    value="{{ $usuario->Rua }}">
-                                            </div>
-                                            <div class="mb-3">
-                                                <label for="Rua" class="form-label">N°</label>
-                                                <input type="text" class="form-control" id="Rua" name="Numero"
-                                                    value="{{ $usuario->Numero }}">
-                                            </div>
+                                                <div class="mb-3">
+                                                    <label for="TelFixo" class="form-label">Telefone Fixo</label>
+                                                    <input type="text" class="form-control" id="TelFixo"
+                                                        name="TelFixo" value="{{ $usuario->TelFixo }}">
+                                                </div>
 
-                                            <!-- Adicione outros campos conforme necessário -->
+                                                <div class="mb-3">
+                                                    <label for="Rua" class="form-label">Rua</label>
+                                                    <input type="text" class="form-control" id="Rua"
+                                                        name="Rua" value="{{ $usuario->Rua }}">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label for="Rua" class="form-label">N°</label>
+                                                    <input type="text" class="form-control" id="Rua"
+                                                        name="Numero" value="{{ $usuario->Numero }}">
+                                                </div>
 
-                                            <!-- Botão de Atualizar -->
-                                            <button type="submit" class="btn btn-primary">Atualizar</button>
-                                        </form>
+                                                <!-- Adicione outros campos conforme necessário -->
+
+                                                <!-- Botão de Atualizar -->
+                                                <button type="submit" class="btn btn-primary">Atualizar</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
 
-                        <!-- Conteúdo do Modal de Exclusão -->
-                        <div class="modal fade" id="excluirUsuario{{ $usuario->id }}" tabindex="-1"
-                            aria-labelledby="excluirUsuarioLabel{{ $usuario->id }}" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="excluirUsuarioLabel{{ $usuario->id }}">Excluir
-                                            Usuário
-                                        </h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Tem certeza que deseja excluir o usuário {{ $usuario->name }}?</p>
-                                        <!-- Formulário de Exclusão -->
-                                        <form action="{{ route('excluirUsuario', ['id' => $usuario->id]) }}"
-                                            method="post">
-                                            @csrf
-                                            @method('DELETE')
-                                            <!-- Adiciona esta linha para indicar que é um método DELETE -->
+                            <!-- Conteúdo do Modal de Exclusão -->
+                            <div class="modal fade" id="excluirUsuario{{ $usuario->id }}" tabindex="-1"
+                                aria-labelledby="excluirUsuarioLabel{{ $usuario->id }}" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="excluirUsuarioLabel{{ $usuario->id }}">Excluir
+                                                Usuário
+                                            </h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Tem certeza que deseja excluir o usuário {{ $usuario->name }}?</p>
+                                            <!-- Formulário de Exclusão -->
+                                            <form action="{{ route('excluirUsuario', ['id' => $usuario->id]) }}"
+                                                method="post">
+                                                @csrf
+                                                @method('DELETE')
+                                                <!-- Adiciona esta linha para indicar que é um método DELETE -->
 
-                                            <!-- Botão de Excluir -->
-                                            <button type="submit" class="btn btn-danger">Excluir</button>
-                                        </form>
+                                                <!-- Botão de Excluir -->
+                                                <button type="submit" class="btn btn-danger">Excluir</button>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
-                </tbody>
-            </table>
+                        @endforeach
+                    </tbody>
+                </table>
         </div>
         <!-- Modal de Adição de Usuário -->
         <div class="modal fade" id="adicionarUsuarioModal" tabindex="-1" aria-labelledby="adicionarUsuarioModalLabel"
@@ -302,7 +308,8 @@
                             <!-- Campos do Formulário -->
                             <div class="mb-3">
                                 <label for="name" class="form-label">Nome</label>
-                                <input type="text" class="form-control" id="name" name="name" required maxlength="6">
+                                <input type="text" class="form-control" id="name" name="name" required
+                                    maxlength="6">
                             </div>
 
                             <div class="mb-3">
@@ -362,7 +369,7 @@
     </script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.all.min.js"></script>
     <script src="{{ asset('vendor/sweetalert/sweetalert.min.js') }}"></script>
-@include('sweetalert::alert')
+    @include('sweetalert::alert')
 </body>
 
 </html>
