@@ -4,17 +4,35 @@ namespace App\Http\Controllers;
 
 
 use App\Models\User;
-use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
+
+
+
 
 
 
 class UserController extends Controller
 {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // CRUD//
 
@@ -138,7 +156,7 @@ class UserController extends Controller
         } else {
             // Exibir SweetAlert de erro em caso de credenciais inválidas
             alert()->error('Erro de Autenticação', 'Credenciais inválidas. Tente novamente.')->showConfirmButton('OK', '#FF0000');
-            return redirect('/index');
+            return redirect('/login');
         }
     }
 
@@ -172,7 +190,7 @@ class UserController extends Controller
         $DadosRegistro = $request->validate([
             'name' => ['required', 'min:6', 'max:6', Rule::unique('users', 'name')],
             'email' => ['required', 'email', Rule::unique('users', 'email')],
-            'password' => ['required', 'min:8', 'max:8'],
+            'password' => ['required', 'max:8'],
             'cpf' => ['required'],
             'nascimento' => ['required'],
             'TelCelular' => ['required'],
@@ -188,8 +206,6 @@ class UserController extends Controller
             'Genero' => ['required'],
             'Permissao' => ['required'],
             'answer_1' => ['required'],
-            'answer_2' => ['required'],
-            'answer_3' => ['required'],
         ]);
 
         $DadosRegistro['password'] = bcrypt($DadosRegistro['password']);
@@ -210,23 +226,52 @@ class UserController extends Controller
     }
 
     public function resetPassword(Request $request)
-{
-    $request->validate([
-        'email' => 'required|email',
-        'answer' => 'required',
-        'password' => 'required|confirmed|min:8',
-    ]);
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'name' => 'required',
+            'answer' => 'required',
+            'password' => 'required',
+            'TelCelular',
+            'TelFixo',
+            'TelCelular',
+            'TelFixo',
+            'Rua',
+            'Bairro',
+            'Numero',
+            'Cidade',
+            'Estado',
+            'Cep'
+        ]);
 
-    $user = User::where('email', $request->email)
-                ->where('answer_1', $request->answer)
-                ->first();
+        $user = User::where('email', $request->email)
+            ->where('answer_1', $request->answer)
+            ->first();
 
-    if ($user) {
-        $user->update(['password' => Hash::make($request->password)]);
-        alert()->success('Sucesso', 'Senha redefinida com sucesso. Faça login com sua nova senha.')->showConfirmButton('OK', '#4bb543');
-        return redirect('/login')->with('success', 'Senha redefinida com sucesso. Faça login com sua nova senha.');
+        if ($user) {
+            $user->update(['password' => Hash::make($request->password)]);
+            $user->update(['name' => $request->name]);
+            $user->update(['email' => $request->email]);
+            $user->update(['TelCelular' => $request->TelCelular]);
+            $user->update(['TelFixo' => $request->TelFixo]);
+            $user->update(['Rua' => $request->Rua]);
+            $user->update(['Bairro' => $request->Bairro]);
+            $user->update(['Cep' => $request->Cep]);
+            $user->update(['Numero' => $request->Numero]);
+            $user->update(['Cidade' => $request->Cidade]);
+            $user->update(['Estado' => $request->Estado]);
+
+            // Check if the user is already authenticated
+            if (Auth::check()) {
+                alert()->success('Sucesso', 'Senha redefinida com sucesso.')->showConfirmButton('OK', '#4bb543');
+                return redirect('/dashboard')->with('success', 'Senha redefinida com sucesso.');
+            } else {
+                alert()->success('Sucesso', 'Senha redefinida com sucesso. Faça login com sua nova senha.')->showConfirmButton('OK', '#4bb543');
+                return redirect('/login')->with('success', 'Senha redefinida com sucesso. Faça login com sua nova senha.');
+            }
+        }
+
+        alert()->error('E-mail ou resposta à pergunta incorretos.')->showConfirmButton('OK', '#fa0000');
+        return back()->withErrors(['email' => 'E-mail ou resposta à pergunta incorretos.']);
     }
-    alert()->error('E-mail ou resposta à pergunta incorretos.')->showConfirmButton('OK', '#fa0000');
-    return back()->withErrors(['email' => 'E-mail ou resposta à pergunta incorretos.']);
-}
 }

@@ -3,6 +3,8 @@
 use App\Http\Controllers\UserController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PasswordController;
+
 
 
 /*
@@ -16,13 +18,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Rota para exibir o formulário de alteração de senha
+Route::post('/user/update-password', [UserController::class, 'updatePassword'])->name('user.updatePassword');
 
 
+Route::middleware(['auth'])->group(function () {
+    Route::post('/update-password', [PasswordController::class, 'update'])->name('update.password');
+});
 
 
 //rotas site//
 Route::get('/', function () {
     return view('index');
+});
+Route::get('/changepass', function () {
+    return view('changepass');
 });
 
 Route::get('/index', function () {
@@ -112,3 +122,17 @@ Route::view('/forgot-password', 'forgot-password')->name('password.reset');
 Route::post('/forgot-password', [UserController::class, 'resetPassword']);
 
 // Adicione rotas de autenticação de dois fatores, se necessário
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ... Outras rotas ...

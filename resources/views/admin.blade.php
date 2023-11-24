@@ -138,7 +138,7 @@
             <table class="table meudeus">
                 <thead>
                     <tr>
-                        <th class=> <i style="color:red;" class="fa-regular fa-user fa-1x "></i>ID</th>
+                        <th> <i style="color:red;" class="fa-regular fa-user fa-1x "></i>ID</th>
                         <th><i class="fa-solid fa-right-to-bracket iconesadmin "></i>Nome</th>
                         <th><i class="fa-solid fa-envelope iconesadmin "></i><br>Email</th>
                         <th><i class="fa-solid fa-id-badge iconesadmin"></i><br>Nome Completo</th>

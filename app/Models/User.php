@@ -37,11 +37,6 @@ class User extends Authenticatable
         'Estado',
         'Genero',
         'answer_1',
-
-
-      /*   'answer_1',
-        'answer_2',
-        'answer_3', */
     ];
 
     /**
